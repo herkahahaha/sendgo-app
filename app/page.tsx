@@ -1,5 +1,5 @@
 
-import { getDataProvince, getDataCity } from "./actions";
+import { getDataProvince, getDataCity } from "./lib/actions";
 
 import { Booking } from "./booking";
 

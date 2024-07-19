@@ -2,7 +2,7 @@
 import { PrimaryButton } from "@/components/button";
 import { Input } from "@/components/input";
 import { useState } from "react";
-import { ServiceCost } from "./actions";
+import { ServiceCost } from "./lib/actions";
 import { useFormState, useFormStatus } from "react-dom";
 import { Card } from "@/components/card";
 import { BookingProps, CityProps, servicesProps } from "@/@types/booking";
