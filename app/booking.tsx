@@ -143,7 +143,7 @@ export const Booking: React.FC<BookingProps> = ({
       </form>
 
       <div className="">
-        {origin_city_state === "0" && destination_city_state === "0" ? (
+        {origin_city_state === "1" || destination_city_state === "1" ? (
           <p>Pilih kota asal dan tujuan anda</p>
         ) : (
           <div className="space-y-4">
