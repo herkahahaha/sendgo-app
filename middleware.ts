@@ -22,13 +22,13 @@ export default async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL('/login', req.nextUrl));
   }
 
-  // if (
-  //   isPublicRoute &&
-  //   session?.userId &&
-  //   !req.nextUrl.pathname.startsWith('/')
-  // ) {
-  //   return NextResponse.redirect(new URL('/', req.nextUrl));
-  // }
+  if (
+    isPublicRoute &&
+    session?.userId &&
+    !req.nextUrl.pathname.startsWith('/')
+  ) {
+    return NextResponse.redirect(new URL('/', req.nextUrl));
+  }
 
   return NextResponse.next();
 }
