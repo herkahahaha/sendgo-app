@@ -17,7 +17,7 @@ Menampilkan perbandingan biaya pelayanan logistik antara JNT, POS, dan TIKI. men
 - [x]  gunakan css / sass / scoped style / styled component dengan maksimal
 - [x]  gunakan Next.JS
 - [x]  penggunaan typescript menjadi nilai tambah
-- [ ]  Routing (Auth)
+- [x]  Routing (Auth)
 
 ### Fetch Data external
 
@@ -84,7 +84,9 @@ PrimaryButton.displayName = "PrimaryButton";
 
 ### Routing AUTH
 
-Dipart ini masih __blocking__ versi 14 ini, cukup banyak perubahan dalam authentifikasi dan middleware terlebih untuk konfigurasi menggunakan custom credentials. 
+Auth kali ini sederhan menggunakan credential berikut ini, email `test@test.com` dan password `123test`, pada app berikut memakai middleware untuk memprotect halaman utama
+
+![loginpage](./login.png)
 
 
 
