@@ -2,7 +2,7 @@
 import { PrimaryButton } from "@/components/button";
 import { Input } from "@/components/input";
 import { useState } from "react";
-import { ServiceCost } from "./lib/actions";
+import { ServiceCost } from "./actions";
 import { useFormState, useFormStatus } from "react-dom";
 import { Card } from "@/components/card";
 import { BookingProps, CityProps, servicesProps } from "@/@types/booking";
@@ -163,10 +163,10 @@ export const Booking: React.FC<BookingProps> = ({
               (val: servicesProps, index: number) => (
                 <Card
                   key={`${index}`}
-                  names={val.service}
-                  description={val.description}
-                  etd={val.cost[0].etd}
-                  price={val.cost[0].value}
+                  names={val?.service}
+                  description={val?.description}
+                  etd={val?.cost[0]?.etd}
+                  price={val?.cost[0]?.value}
                 />
               )
             ) ?? []}

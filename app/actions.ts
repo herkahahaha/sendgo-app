@@ -1,6 +1,9 @@
 "use server";
-import { signIn } from "@/auth";
+
 import { revalidatePath } from "next/cache";
+// import bcrypt from 'bcrypt';
+import { FormState, LoginFormSchema } from "./lib/zod";
+import { createSession, deleteSession } from "./auth/session";
 
 export async function getDataProvince() {
   const res = await fetch(`${process.env.RAJAONGKIR}/province`, {
@@ -58,20 +61,59 @@ export const ServiceCost = async (prevState: any, formData: FormData) => {
     throw new Error("Failed to post data");
   }
   const result = await res.json();
-
+revalidatePath("/")
   return result;
 };
 
-export async function authenticate(
-  prevState: string | undefined,
+export async function login(
+  state: FormState,
   formData: FormData,
-) {
-  try {
-    await signIn('credentials', Object.fromEntries(formData));
-  } catch (error) {
-    if ((error as Error).message.includes('CredentialsSignin')) {
-      return 'CredentialSignin';
-    }
-    throw error;
+): Promise<FormState> {
+  // 1. Validate form fields
+  const validatedFields = LoginFormSchema.safeParse({
+    email: formData.get('email'),
+    password: formData.get('password'),
+  });
+  const errorMessage = { message: 'Invalid login credentials.' };
+
+  // If any form fields are invalid, return early
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+    };
   }
+
+  // 2. Query the database for the user with the given email
+  // const user = await db.query.users.findFirst({
+  //   where: eq(users.email, validatedFields.data.email),
+  // });
+
+  const user = validatedFields.data.email === "test@test.com"
+
+  // If user is not found, return early
+  if (!user) {
+    return errorMessage;
+  }
+  // 3. Compare the user's password with the hashed password in the database
+  // const passwordMatch = await bcrypt.compare(
+  //   validatedFields.data.password,
+  //   "123test",
+  // );
+  const passwordMatch = 
+    validatedFields.data.password ===
+    "123test"
+  
+
+  // If the password does not match, return early
+  if (!passwordMatch) {
+    return errorMessage;
+  }
+
+  // 4. If login successful, create a session for the user and redirect
+  const userId = "test@test.com";
+  await createSession(userId);
+}
+
+export async function logout() {
+  deleteSession();
 }
