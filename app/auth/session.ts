@@ -43,6 +43,17 @@ export async function decrypt(session: string | undefined = '') {
     redirect('/');
   }
 
+  export async function verifySession() {
+    const cookie = cookies().get('session')?.value;
+    const session = await decrypt(cookie);
+  
+    if (!session?.userId) {
+      redirect('/login');
+    }
+  
+    return { isAuth: true, userId: Number(session.userId) };
+  }
+  
   export function deleteSession() {
     cookies().delete('session');
     redirect('/login');
