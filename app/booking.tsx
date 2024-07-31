@@ -1,7 +1,7 @@
 "use client";
 import { PrimaryButton } from "@/components/button";
 import { Input } from "@/components/input";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { ServiceCost } from "./actions";
 import { useFormState, useFormStatus } from "react-dom";
 import { Card } from "@/components/card";
@@ -22,6 +22,22 @@ export const Booking: React.FC<BookingProps> = ({
   const [, setCourier] = useState<string>("");
   const { pending } = useFormStatus();
   const [state, formAction] = useFormState(ServiceCost, initialState);
+
+  const filteredCity = useMemo(
+    () =>
+      cityByProv?.filter(
+        (val: CityProps) => origin_province_state === val.province_id
+      ),
+    [cityByProv, origin_province_state]
+  );
+
+  const filteredCityDes = useMemo(
+    () =>
+      cityByProv?.filter(
+        (val: CityProps) => destination_province_state === val.province_id
+      ),
+    [cityByProv, destination_province_state]
+  );
 
   //   console.log("asal", origin_city_state, "tujuan", destination_city_state);
   //   console.log("aha", state)
@@ -44,15 +60,6 @@ export const Booking: React.FC<BookingProps> = ({
   const handleOnChangeCourier = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setCourier(e.target.value);
   };
-  //   console.log(cityByProv[province_id])
-
-  const filteredCity = cityByProv?.filter(
-    (val: CityProps) => origin_province_state == val.province_id
-  );
-
-  const filteredCityDes = cityByProv?.filter(
-    (val: CityProps) => destination_province_state == val.province_id
-  );
 
   return (
     <section className="grid grid-cols-1 md:grid-cols-2 gap-x-8 border-2 p-8 border-slate-50 rounded-md max-w-screen-md">
@@ -135,6 +142,7 @@ export const Booking: React.FC<BookingProps> = ({
         </div>
         <div className="m-4 flex justify-end">
           <PrimaryButton
+            className=" outline-slate-50 text-teal-200 hover:text-black hover:bg-slate-50"
             type="submit"
             label="Cek Harga Pengiriman"
             disabled={pending}
@@ -169,7 +177,7 @@ export const Booking: React.FC<BookingProps> = ({
                   price={val?.cost[0]?.value}
                 />
               )
-            ) ?? []}
+            ) ?? <p>loading...</p>}
           </div>
         )}
       </div>

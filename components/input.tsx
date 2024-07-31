@@ -1,5 +1,3 @@
-"use client";
-
 import { Field, Label, Select, Description } from "@headlessui/react";
 import clsx from "clsx";
 
@@ -10,14 +8,14 @@ type InputProps = {
   name: string;
   children: React.ReactNode;
   disable?: boolean;
-}
+};
 export function Input({
   title,
   description,
   onchange,
   name,
   children,
-  disable
+  disable,
 }: InputProps) {
   return (
     <>

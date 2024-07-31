@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
 import { logout } from "@/app/actions";
+import { PrimaryButton } from "./button";
 
-export default function LogoutButton() {
+export function LogoutButton() {
   return (
-    <button
-      className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-slate-500 transition-all hover:text-gray-900"
+    <PrimaryButton
+      className=" outline-slate-50 text-teal-200 hover:text-black hover:bg-slate-50"
+      label="Logout"
       onClick={async () => {
         await logout();
       }}
-    >
-      Logout
-    </button>
+    />
   );
 }
