@@ -1,6 +1,6 @@
 
 
-# Cek Ongkir Sederhana Menggunakan Nextjs 14 
+# Cek Ongkir Pengiriman Logistik Sederhana Menggunakan Reactjs | Nextjs 14 
 
 Menampilkan perbandingan biaya pelayanan logistik antara JNT, POS, dan TIKI. menggunakan api dari `rajaongkir.com`
 
