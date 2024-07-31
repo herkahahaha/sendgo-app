@@ -13,10 +13,9 @@ Menampilkan perbandingan biaya pelayanan logistik antara JNT, POS, dan TIKI. men
 - [x]  Conditional Rendering
 - [x]  Reusable Component
 - [x]  Reactivity
-- [x]  gunakan eslint
-- [x]  gunakan css / sass / scoped style / styled component dengan maksimal
-- [x]  gunakan Next.JS
-- [x]  penggunaan typescript menjadi nilai tambah
+- [x]  eslint
+- [x]  css / sass / scoped style / styled component dengan maksimal menggunakan tailwind
+- [x]  penggunaan typescript
 - [x]  Routing (Auth)
 
 ### Fetch Data external
